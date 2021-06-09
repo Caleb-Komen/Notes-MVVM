@@ -10,7 +10,7 @@ interface NotesDao {
     fun observeNotes(): LiveData<List<Note>>
 
     @Query("SELECT * FROM notes WHERE id = :noteId")
-    suspend fun getNote(noteId: Long)
+    suspend fun getNote(noteId: Long): Note
 
     @Insert
     suspend fun insertNote(note: Note)
