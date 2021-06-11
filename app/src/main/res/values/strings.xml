@@ -4,4 +4,6 @@
     <string name="label_bookmarks">Bookmarks</string>
     <string name="no_notes">No notes</string>
     <string name="no_bookmarks">No bookmarks</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

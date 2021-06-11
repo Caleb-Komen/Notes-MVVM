@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/notesFragment">
+
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.note.notes.notes.NotesFragment"
+        android:label="fragment_notes"
+        tools:layout="@layout/fragment_notes" >
+        <action
+            android:id="@+id/action_notesFragment_to_notesDetailsFragment"
+            app:destination="@id/notesDetailsFragment" />
+        <action
+            android:id="@+id/action_notesFragment_to_addEditNotesFragment"
+            app:destination="@id/addEditNotesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notesDetailsFragment"
+        android:name="com.note.notes.notesdetails.NotesDetailsFragment"
+        android:label="fragment_notes_details"
+        tools:layout="@layout/fragment_notes_details" >
+        <action
+            android:id="@+id/action_notesDetailsFragment_to_notesFragment"
+            app:destination="@id/notesFragment" />
+        <action
+            android:id="@+id/action_notesDetailsFragment_to_addEditNotesFragment"
+            app:destination="@id/addEditNotesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditNotesFragment"
+        android:name="com.note.notes.addeditnotes.AddEditNotesFragment"
+        android:label="fragment_add_edit_notes"
+        tools:layout="@layout/fragment_add_edit_notes" >
+        <action
+            android:id="@+id/action_addEditNotesFragment_to_notesFragment"
+            app:destination="@id/notesFragment" />
+    </fragment>
+</navigation>
