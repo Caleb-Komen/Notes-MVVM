@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Notes</string>
+    <string name="label_all">All Notes</string>
+    <string name="label_bookmarks">Bookmarks</string>
+    <string name="no_notes">No notes</string>
+    <string name="no_bookmarks">No bookmarks</string>
 </resources>
