@@ -21,29 +21,6 @@ class NotesViewModel(
         }
     }
 
-    private fun filterNotes(result: Result<List<Note>>) = liveData{
-        val data = if (result is Result.Success){
-            filterItems(result.data, getFilterType())
-        } else{
-            emptyList()
-        }
-        emit(data)
-    }
-
-    private fun filterItems(notes: List<Note>, filterType: NotesFilterType): List<Note>{
-        val notesToDisplay = ArrayList<Note>()
-        for (note in notes){
-            when(filterType){
-                NotesFilterType.ALL_NOTES -> {
-                    notesToDisplay.add(note)
-                }
-                NotesFilterType.BOOKMARKS -> if (note.bookmarked){
-                    notesToDisplay.add(note)
-                }
-            }
-        }
-        return notesToDisplay
-    }
     val notes: LiveData<List<Note>> = _notes
 
     private val _filterLabelString = MutableLiveData<Int>()
@@ -54,6 +31,10 @@ class NotesViewModel(
 
     private val _noNotesIcon = MutableLiveData<Int>()
     val noNotesIcon: LiveData<Int> = _noNotesIcon
+
+    val empty: LiveData<Boolean> = notes.map {
+        it.isEmpty()
+    }
 
     init {
         setFiltering(getFilterType())
@@ -76,6 +57,30 @@ class NotesViewModel(
         _filterLabelString.value = filterLabelString
         _noNotesLabelString.value = noNotesLabelString
         _noNotesIcon.value = noNotesIcon
+    }
+
+    private fun filterNotes(result: Result<List<Note>>) = liveData{
+        val data = if (result is Result.Success){
+            filterItems(result.data, getFilterType())
+        } else{
+            emptyList()
+        }
+        emit(data)
+    }
+
+    private fun filterItems(notes: List<Note>, filterType: NotesFilterType): List<Note>{
+        val notesToDisplay = ArrayList<Note>()
+        for (note in notes){
+            when(filterType){
+                NotesFilterType.ALL_NOTES -> {
+                    notesToDisplay.add(note)
+                }
+                NotesFilterType.BOOKMARKS -> if (note.isMarked){
+                    notesToDisplay.add(note)
+                }
+            }
+        }
+        return notesToDisplay
     }
 
     private fun getFilterType() = savedStateHandle[NOTE_FILTER_TYPE_KEY] ?: NotesFilterType.ALL_NOTES

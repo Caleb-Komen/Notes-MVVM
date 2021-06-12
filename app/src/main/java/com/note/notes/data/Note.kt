@@ -12,5 +12,5 @@ data class Note(
     @ColumnInfo(name = "body") var noteBody: String = "",
     @ColumnInfo(name = "bookmarked")var isBookmarked: Boolean = false
 ){
-    val bookmarked: Boolean get() = isBookmarked
+    val isMarked: Boolean get() = isBookmarked
 }
