@@ -31,6 +31,7 @@ class NotesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupAdapter()
         setupFab()
     }
 
@@ -40,5 +41,10 @@ class NotesFragment : Fragment() {
                 Toast.makeText(requireContext(), "New note", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun setupAdapter(){
+        val notesAdapter = NotesAdapter()
+        binding.notesList.adapter = notesAdapter
     }
 }
