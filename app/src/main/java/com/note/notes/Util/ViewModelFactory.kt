@@ -5,6 +5,7 @@ import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
+import com.note.notes.addeditnotes.AddEditNotesViewModel
 import com.note.notes.data.NotesRepository
 import com.note.notes.notes.NotesViewModel
 
@@ -20,7 +21,9 @@ class ViewModelFactory(
     ) = with(modelClass){
         when{
             isAssignableFrom(NotesViewModel::class.java) ->
-                return NotesViewModel(repository, handle) as T
+                NotesViewModel(repository, handle)
+            isAssignableFrom(AddEditNotesViewModel::class.java) ->
+                AddEditNotesViewModel(repository)
             else ->
                 throw IllegalArgumentException("Unknown viewmodel class")
         }

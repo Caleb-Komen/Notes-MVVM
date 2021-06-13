@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.note.notes.R
 import com.note.notes.Util.getViewModelFactory
@@ -14,6 +14,7 @@ import com.note.notes.databinding.FragmentNotesBinding
 
 class NotesFragment : Fragment() {
     private lateinit var binding: FragmentNotesBinding
+
     private val notesViewModel by viewModels<NotesViewModel> {
         getViewModelFactory()
     }
@@ -38,7 +39,9 @@ class NotesFragment : Fragment() {
     private fun setupFab() {
         view?.findViewById<FloatingActionButton>(R.id.fab_new_note)?.apply {
             setOnClickListener {
-                Toast.makeText(requireContext(), "New note", Toast.LENGTH_SHORT).show()
+                val action = NotesFragmentDirections
+                    .actionNotesFragmentToAddEditNotesFragment(-1L)
+                it.findNavController().navigate(action)
             }
         }
     }

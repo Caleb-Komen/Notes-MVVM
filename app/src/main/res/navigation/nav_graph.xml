@@ -37,5 +37,9 @@
         <action
             android:id="@+id/action_addEditNotesFragment_to_notesFragment"
             app:destination="@id/notesFragment" />
+        <argument
+            android:name="noteId"
+            app:argType="long"
+            android:defaultValue="-1L" />
     </fragment>
 </navigation>
