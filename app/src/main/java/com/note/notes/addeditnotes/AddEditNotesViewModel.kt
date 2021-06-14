@@ -8,6 +8,7 @@ import com.note.notes.Event
 import com.note.notes.R
 import com.note.notes.data.Note
 import com.note.notes.data.NotesRepository
+import com.note.notes.data.Result
 import kotlinx.coroutines.launch
 
 class AddEditNotesViewModel(
@@ -29,7 +30,6 @@ class AddEditNotesViewModel(
             isNewNote = true
             return
         }
-
         // There is an existing note. Display the note.....
     }
 

@@ -1,6 +1,7 @@
 package com.note.notes.notes
 
 import androidx.lifecycle.*
+import com.note.notes.Event
 import com.note.notes.R
 import com.note.notes.data.Note
 import com.note.notes.data.NotesRepository
@@ -31,6 +32,9 @@ class NotesViewModel(
 
     private val _noNotesIcon = MutableLiveData<Int>()
     val noNotesIcon: LiveData<Int> = _noNotesIcon
+
+    private val _openNoteEvent = MutableLiveData<Event<Long>>()
+    val openNoteEvent: LiveData<Event<Long>> get() = _openNoteEvent
 
     val empty: LiveData<Boolean> = notes.map {
         it.isEmpty()
@@ -81,6 +85,10 @@ class NotesViewModel(
             }
         }
         return notesToDisplay
+    }
+
+    fun openNote(noteId: Long){
+        _openNoteEvent.value = Event(noteId)
     }
 
     private fun getFilterType() = savedStateHandle[NOTE_FILTER_TYPE_KEY] ?: NotesFilterType.ALL_NOTES

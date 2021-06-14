@@ -28,6 +28,10 @@
         <action
             android:id="@+id/action_notesDetailsFragment_to_addEditNotesFragment"
             app:destination="@id/addEditNotesFragment" />
+        <argument
+            android:name="noteId"
+            app:argType="long"
+            android:defaultValue="-1L" />
     </fragment>
     <fragment
         android:id="@+id/addEditNotesFragment"

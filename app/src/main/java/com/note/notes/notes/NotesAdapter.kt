@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import com.note.notes.data.Note
 import com.note.notes.databinding.NoteItemBinding
 
-class NotesAdapter : ListAdapter<Note, NotesViewHolder>(DIFF_UTIL) {
+class NotesAdapter(
+    private val viewModel: NotesViewModel
+) : ListAdapter<Note, NotesViewHolder>(DIFF_UTIL) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
         val binding = NoteItemBinding.inflate(LayoutInflater.from(parent.context), parent,false)
         return NotesViewHolder(binding)
@@ -15,7 +17,7 @@ class NotesAdapter : ListAdapter<Note, NotesViewHolder>(DIFF_UTIL) {
 
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
         val note = getItem(position)
-        holder.bind(note)
+        holder.bind(note, viewModel)
     }
 }
 

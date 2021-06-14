@@ -4,8 +4,7 @@
     <string name="label_bookmarks">Bookmarks</string>
     <string name="no_notes">No notes</string>
     <string name="no_bookmarks">No bookmarks</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="snackbar_error_text">Note is empty. Fill out all the fields</string>
     <string name="snackbar_create_new_successful">Note added successfully</string>
+    <string name="load_note_error">Note not found</string>
 </resources>
