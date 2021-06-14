@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:text="@{viewmodel.note.noteTitle}" />
+            android:text="@{viewmodel.note.noteTitle}"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
 
         <TextView
             android:id="@+id/text_note_body"
@@ -28,7 +29,8 @@
             android:layout_marginTop="16dp"
             android:background="@android:color/transparent"
             android:gravity="top"
-            android:text="@{viewmodel.note.noteBody}" />
+            android:text="@{viewmodel.note.noteBody}"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     </LinearLayout>
 </layout>

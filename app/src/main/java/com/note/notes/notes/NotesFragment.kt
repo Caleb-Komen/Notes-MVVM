@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.note.notes.EventObserver
 import com.note.notes.R
@@ -63,5 +65,6 @@ class NotesFragment : Fragment() {
     private fun setupAdapter(){
         val notesAdapter = NotesAdapter(notesViewModel)
         binding.notesList.adapter = notesAdapter
+        binding.notesList.addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
     }
 }

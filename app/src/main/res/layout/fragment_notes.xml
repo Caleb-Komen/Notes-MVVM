@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:text="@{viewmodel.filterLabelString}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 tools:text="All Notes" />
 
             <androidx.recyclerview.widget.RecyclerView

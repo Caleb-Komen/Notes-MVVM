@@ -15,20 +15,27 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="@{() -> viewmodel.openNote(note.noteId)}">
 
         <TextView
             android:id="@+id/note_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{note.noteTitle}"/>
+            android:text="@{note.noteTitle}"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:maxLines="1"
+            android:ellipsize="end"/>
 
         <TextView
             android:id="@+id/note_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{note.noteBody}"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:maxLines="2"
+            android:ellipsize="end"/>
 
     </LinearLayout>
 </layout>
