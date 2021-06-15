@@ -6,5 +6,6 @@
     <string name="no_bookmarks">No bookmarks</string>
     <string name="snackbar_error_text">Note is empty. Fill out all the fields</string>
     <string name="snackbar_create_new_successful">Note added successfully</string>
-    <string name="load_note_error">Note not found</string>
+    <string name="load_note_error">Unable to load note</string>
+    <string name="snackbar_update_successful_text">Note updated successfully</string>
 </resources>

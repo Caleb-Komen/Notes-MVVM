@@ -20,6 +20,9 @@ class NotesDetailsViewModel(
     private val _snackbarMessage = MutableLiveData<Event<Int>>()
     val snackbarMessage: LiveData<Event<Int>> get() = _snackbarMessage
 
+    private val _editNoteEvent = MutableLiveData<Event<Long>>()
+    val editNoteEvent: LiveData<Event<Long>> get() = _editNoteEvent
+
     fun getNote(noteId: Long) = viewModelScope.launch {
         repository.getNote(noteId).let { result ->
             _note.value = if (result is Result.Success){
@@ -29,6 +32,10 @@ class NotesDetailsViewModel(
                 null
             }
         }
+    }
+
+    fun editNote(noteId: Long){
+        _editNoteEvent.value = Event(noteId)
     }
 
 }

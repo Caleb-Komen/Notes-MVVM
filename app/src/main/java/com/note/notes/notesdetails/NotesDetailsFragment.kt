@@ -1,12 +1,12 @@
 package com.note.notes.notesdetails
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.note.notes.EventObserver
 import com.note.notes.R
 import com.note.notes.Util.getViewModelFactory
 import com.note.notes.Util.setupSnackbar
@@ -30,6 +30,7 @@ class NotesDetailsFragment : Fragment() {
             viewmodel = notesDetailsViewModel
             lifecycleOwner = viewLifecycleOwner
         }
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -37,10 +38,34 @@ class NotesDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         notesDetailsViewModel.getNote(args.noteId)
         setupSnackbar()
+        setupNavigation()
+    }
+
+    private fun setupNavigation() {
+        notesDetailsViewModel.editNoteEvent.observe(viewLifecycleOwner, EventObserver{ noteId ->
+            val action = NotesDetailsFragmentDirections.actionNotesDetailsFragmentToAddEditNotesFragment(noteId)
+            findNavController().navigate(action)
+        })
     }
 
     private fun setupSnackbar() {
         view?.setupSnackbar(this, notesDetailsViewModel.snackbarMessage)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.note_details_frag_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.edit){
+            editNote()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun editNote() {
+        notesDetailsViewModel.editNote(args.noteId)
     }
 
 }
