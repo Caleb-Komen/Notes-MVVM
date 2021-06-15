@@ -8,4 +8,8 @@
     <string name="snackbar_create_new_successful">Note added successfully</string>
     <string name="load_note_error">Unable to load note</string>
     <string name="snackbar_update_successful_text">Note updated successfully</string>
+    <string name="snackbar_delete_successful_text">Note deleted</string>
+    <string name="dialog_message">Are you sure?</string>
+    <string name="dialog_button_okay">Yes</string>
+    <string name="dialog_button_cancel">No</string>
 </resources>

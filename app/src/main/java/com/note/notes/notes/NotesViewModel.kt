@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.note.notes.Event
 import com.note.notes.R
 import com.note.notes.Util.ADD_RESULT_OK
+import com.note.notes.Util.DELETE_RESULT_OK
 import com.note.notes.Util.UPDATE_RESULT_OK
 import com.note.notes.data.Note
 import com.note.notes.data.NotesRepository
@@ -108,6 +109,7 @@ class NotesViewModel(
         when(result){
             ADD_RESULT_OK -> _snackbarMessage.value = Event(R.string.snackbar_create_new_successful)
             UPDATE_RESULT_OK -> _snackbarMessage.value = Event(R.string.snackbar_update_successful_text)
+            DELETE_RESULT_OK -> _snackbarMessage.value = Event(R.string.snackbar_delete_successful_text)
         }
         resultMessageShown = true
     }

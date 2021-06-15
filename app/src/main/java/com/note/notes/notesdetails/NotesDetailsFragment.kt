@@ -1,7 +1,9 @@
 package com.note.notes.notesdetails
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -46,6 +48,11 @@ class NotesDetailsFragment : Fragment() {
             val action = NotesDetailsFragmentDirections.actionNotesDetailsFragmentToAddEditNotesFragment(noteId)
             findNavController().navigate(action)
         })
+
+        notesDetailsViewModel.deleteNoteEvent.observe(viewLifecycleOwner, EventObserver{
+            val action = NotesDetailsFragmentDirections.actionNotesDetailsFragmentToNotesFragment(it)
+            findNavController().navigate(action)
+        })
     }
 
     private fun setupSnackbar() {
@@ -57,15 +64,38 @@ class NotesDetailsFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.edit){
-            editNote()
-            return true
+        when (item.itemId){
+            R.id.edit -> {
+                editNote()
+                return true
+            }
+            R.id.delete -> {
+                showConfirmationDialog()
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }
 
+    private fun showConfirmationDialog() {
+        val dialog = AlertDialog.Builder(requireContext()).apply {
+            setMessage(getString(R.string.dialog_message))
+            setPositiveButton(getString(R.string.dialog_button_okay)) { _, _ ->
+                deleteNote()
+            }
+            setNegativeButton(getString(R.string.dialog_button_cancel)) { dialogInterface, _ ->
+                dialogInterface?.dismiss()
+            }
+        }
+        dialog.show()
+    }
+
     private fun editNote() {
         notesDetailsViewModel.editNote(args.noteId)
+    }
+
+    private fun deleteNote(){
+        notesDetailsViewModel.deleteNote(args.noteId)
     }
 
 }

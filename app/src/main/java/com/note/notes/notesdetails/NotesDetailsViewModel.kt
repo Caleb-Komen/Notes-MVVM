@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.note.notes.Event
 import com.note.notes.R
+import com.note.notes.Util.DELETE_RESULT_OK
 import com.note.notes.data.Note
 import com.note.notes.data.NotesRepository
 import com.note.notes.data.Result
@@ -24,6 +25,9 @@ class NotesDetailsViewModel(
     private val _editNoteEvent = MutableLiveData<Event<Long>>()
     val editNoteEvent: LiveData<Event<Long>> get() = _editNoteEvent
 
+    private val _deleteNoteEvent = MutableLiveData<Event<Int>>()
+    val deleteNoteEvent: LiveData<Event<Int>> get() = _deleteNoteEvent
+
     fun getNote(noteId: Long) = viewModelScope.launch {
         repository.getNote(noteId).let { result ->
             _note.value = if (result is Result.Success){
@@ -38,6 +42,11 @@ class NotesDetailsViewModel(
 
     fun editNote(noteId: Long){
         _editNoteEvent.value = Event(noteId)
+    }
+
+    fun deleteNote(noteId: Long) = viewModelScope.launch{
+        repository.deleteNoteById(noteId)
+        _deleteNoteEvent.value = Event(DELETE_RESULT_OK)
     }
 
 }

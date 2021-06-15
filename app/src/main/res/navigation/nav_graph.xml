@@ -33,6 +33,11 @@
             android:name="noteId"
             app:argType="long"
             android:defaultValue="-1L" />
+        <action
+            android:id="@+id/action_notesDetailsFragment_to_notesFragment"
+            app:destination="@id/notesFragment"
+            app:popUpTo="@id/notesFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/addEditNotesFragment"
