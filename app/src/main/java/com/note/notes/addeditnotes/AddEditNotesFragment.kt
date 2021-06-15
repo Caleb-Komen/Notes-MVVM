@@ -5,7 +5,9 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.note.notes.EventObserver
 import com.note.notes.R
 import com.note.notes.Util.getViewModelFactory
 import com.note.notes.Util.setupSnackbar
@@ -36,6 +38,14 @@ class AddEditNotesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         addEditViewModel.open(args.noteId)
         setupSnackbar()
+        setupNavigation()
+    }
+
+    private fun setupNavigation() {
+        addEditViewModel.noteSavedEvent.observe(viewLifecycleOwner, EventObserver{
+            val action = AddEditNotesFragmentDirections.actionAddEditNotesFragmentToNotesFragment(it)
+            findNavController().navigate(action)
+        })
     }
 
     private fun setupSnackbar() {

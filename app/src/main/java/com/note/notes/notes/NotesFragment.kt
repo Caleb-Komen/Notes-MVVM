@@ -8,16 +8,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.note.notes.EventObserver
 import com.note.notes.R
 import com.note.notes.Util.getViewModelFactory
+import com.note.notes.Util.setupSnackbar
 import com.note.notes.databinding.FragmentNotesBinding
 
 class NotesFragment : Fragment() {
     private lateinit var binding: FragmentNotesBinding
+
+    private val args: NotesFragmentArgs by navArgs()
 
     private val notesViewModel by viewModels<NotesViewModel> {
         getViewModelFactory()
@@ -36,9 +40,15 @@ class NotesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        notesViewModel.showResultMessage(args.result)
         setupAdapter()
         setupFab()
         setupNavigation()
+        setupSnackbar()
+    }
+
+    private fun setupSnackbar() {
+        view?.setupSnackbar(this, notesViewModel.snackbarMessage)
     }
 
     private fun setupNavigation(){

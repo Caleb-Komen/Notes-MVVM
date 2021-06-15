@@ -16,15 +16,16 @@
         <action
             android:id="@+id/action_notesFragment_to_addEditNotesFragment"
             app:destination="@id/addEditNotesFragment" />
+        <argument
+            android:name="result"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/notesDetailsFragment"
         android:name="com.note.notes.notesdetails.NotesDetailsFragment"
         android:label="fragment_notes_details"
         tools:layout="@layout/fragment_notes_details" >
-        <action
-            android:id="@+id/action_notesDetailsFragment_to_notesFragment"
-            app:destination="@id/notesFragment" />
         <action
             android:id="@+id/action_notesDetailsFragment_to_addEditNotesFragment"
             app:destination="@id/addEditNotesFragment" />
@@ -40,7 +41,9 @@
         tools:layout="@layout/fragment_add_edit_notes" >
         <action
             android:id="@+id/action_addEditNotesFragment_to_notesFragment"
-            app:destination="@id/notesFragment" />
+            app:destination="@id/notesFragment"
+            app:popUpTo="@id/notesFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="noteId"
             app:argType="long"

@@ -3,9 +3,12 @@ package com.note.notes.notes
 import androidx.lifecycle.*
 import com.note.notes.Event
 import com.note.notes.R
+import com.note.notes.Util.ADD_RESULT_OK
+import com.note.notes.Util.UPDATE_RESULT_OK
 import com.note.notes.data.Note
 import com.note.notes.data.NotesRepository
 import com.note.notes.data.Result
+import timber.log.Timber
 
 class NotesViewModel(
     private val notesRepository: NotesRepository,
@@ -15,7 +18,9 @@ class NotesViewModel(
 
     private val _notes: LiveData<List<Note>> = _loadNotes.switchMap { filterType ->
         if (filterType !is NotesFilterType){
-            // Display toast message
+            Timber.w("Filter type not recognised")
+            liveData { emit(emptyList<Note>()) }
+
         }
         notesRepository.observeNotes().distinctUntilChanged().switchMap {
             filterNotes(it)
@@ -35,6 +40,11 @@ class NotesViewModel(
 
     private val _openNoteEvent = MutableLiveData<Event<Long>>()
     val openNoteEvent: LiveData<Event<Long>> get() = _openNoteEvent
+
+    private val _snackbarMessage = MutableLiveData<Event<Int>>()
+    val snackbarMessage: LiveData<Event<Int>> get() = _snackbarMessage
+
+    private var resultMessageShown = false
 
     val empty: LiveData<Boolean> = notes.map {
         it.isEmpty()
@@ -89,6 +99,17 @@ class NotesViewModel(
 
     fun openNote(noteId: Long){
         _openNoteEvent.value = Event(noteId)
+    }
+
+    fun showResultMessage(result: Int){
+        if (resultMessageShown){
+            return
+        }
+        when(result){
+            ADD_RESULT_OK -> _snackbarMessage.value = Event(R.string.snackbar_create_new_successful)
+            UPDATE_RESULT_OK -> _snackbarMessage.value = Event(R.string.snackbar_update_successful_text)
+        }
+        resultMessageShown = true
     }
 
     private fun getFilterType() = savedStateHandle[NOTE_FILTER_TYPE_KEY] ?: NotesFilterType.ALL_NOTES

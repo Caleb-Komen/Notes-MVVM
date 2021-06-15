@@ -10,6 +10,7 @@ import com.note.notes.data.Note
 import com.note.notes.data.NotesRepository
 import com.note.notes.data.Result
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class NotesDetailsViewModel(
     private val repository: NotesRepository
@@ -29,6 +30,7 @@ class NotesDetailsViewModel(
                 result.data
             } else{
                 _snackbarMessage.value = Event(R.string.load_note_error)
+                Timber.w("Unable to get note")
                 null
             }
         }

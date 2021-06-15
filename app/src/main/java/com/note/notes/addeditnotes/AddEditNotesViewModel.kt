@@ -6,10 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.note.notes.Event
 import com.note.notes.R
+import com.note.notes.Util.ADD_RESULT_OK
+import com.note.notes.Util.UPDATE_RESULT_OK
 import com.note.notes.data.Note
 import com.note.notes.data.NotesRepository
 import com.note.notes.data.Result
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class AddEditNotesViewModel(
     private val repository: NotesRepository
@@ -24,6 +27,9 @@ class AddEditNotesViewModel(
 
     private val _snackbarMessage = MutableLiveData<Event<Int>>()
     val snackbarMessage: LiveData<Event<Int>> get() = _snackbarMessage
+
+    private val _noteSavedEvent = MutableLiveData<Event<Int>>()
+    val noteSavedEvent: LiveData<Event<Int>> get() = _noteSavedEvent
 
     fun open(noteId: Long){
         if (noteId == -1L){
@@ -47,6 +53,7 @@ class AddEditNotesViewModel(
             noteBody.value = result.data.noteBody
         } else{
             _snackbarMessage.value = Event(R.string.load_note_error)
+            Timber.w("Unable to load note")
         }
     }
 
@@ -68,11 +75,11 @@ class AddEditNotesViewModel(
 
     private fun createNote(note: Note) = viewModelScope.launch {
         repository.saveNote(note)
-        _snackbarMessage.value = Event(R.string.snackbar_create_new_successful)
+        _noteSavedEvent.value = Event(ADD_RESULT_OK)
     }
 
     private fun updateNote(note: Note) = viewModelScope.launch {
         repository.updateNote(note)
-        _snackbarMessage.value = Event(R.string.snackbar_update_successful_text)
+        _noteSavedEvent.value = Event(UPDATE_RESULT_OK)
     }
 }
