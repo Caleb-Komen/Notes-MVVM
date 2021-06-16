@@ -25,6 +25,8 @@ class AddEditNotesViewModel(
 
     var noteId: Long = -1L
 
+    var isBookmarked = false
+
     private val _snackbarMessage = MutableLiveData<Event<Int>>()
     val snackbarMessage: LiveData<Event<Int>> get() = _snackbarMessage
 
@@ -51,6 +53,7 @@ class AddEditNotesViewModel(
         if (result is Result.Success){
             noteTitle.value = result.data.noteTitle
             noteBody.value = result.data.noteBody
+            isBookmarked = result.data.isBookmarked
         } else{
             _snackbarMessage.value = Event(R.string.load_note_error)
             Timber.w("Unable to load note")
@@ -68,7 +71,7 @@ class AddEditNotesViewModel(
             val note = Note(noteTitle = title, noteBody = body)
             createNote(note)
         } else{
-            val note = Note(noteId, title, body)
+            val note = Note(noteId, title, body, isBookmarked)
             updateNote(note)
         }
     }
