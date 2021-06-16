@@ -9,6 +9,7 @@ import com.note.notes.Util.UPDATE_RESULT_OK
 import com.note.notes.data.Note
 import com.note.notes.data.NotesRepository
 import com.note.notes.data.Result
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class NotesViewModel(
@@ -112,6 +113,11 @@ class NotesViewModel(
             DELETE_RESULT_OK -> _snackbarMessage.value = Event(R.string.snackbar_delete_successful_text)
         }
         resultMessageShown = true
+    }
+
+    fun deleteAllNotes() = viewModelScope.launch {
+        notesRepository.deleteAllNotes()
+        _snackbarMessage.value = Event(R.string.snackbar_delete_all_text)
     }
 
     private fun getFilterType() = savedStateHandle[NOTE_FILTER_TYPE_KEY] ?: NotesFilterType.ALL_NOTES

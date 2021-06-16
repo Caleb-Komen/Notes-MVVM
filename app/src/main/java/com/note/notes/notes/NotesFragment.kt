@@ -1,10 +1,9 @@
 package com.note.notes.notes
 
 import android.os.Bundle
+import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -35,6 +34,7 @@ class NotesFragment : Fragment() {
             viewmodel = notesViewModel
         }
         binding.lifecycleOwner = viewLifecycleOwner
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -70,6 +70,35 @@ class NotesFragment : Fragment() {
                 it.findNavController().navigate(action)
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.notes_frag_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.delete_all){
+            showConfirmationDialog()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun showConfirmationDialog() {
+        val dialog = AlertDialog.Builder(requireContext()).apply {
+            setMessage(getString(R.string.dialog_message))
+            setPositiveButton(getString(R.string.dialog_button_okay)) { _, _ ->
+                deleteAll()
+            }
+            setNegativeButton(getString(R.string.dialog_button_cancel)) { dialogInterface, _ ->
+                dialogInterface?.dismiss()
+            }
+        }
+        dialog.show()
+    }
+
+    private fun deleteAll() {
+        notesViewModel.deleteAllNotes()
     }
 
     private fun setupAdapter(){
