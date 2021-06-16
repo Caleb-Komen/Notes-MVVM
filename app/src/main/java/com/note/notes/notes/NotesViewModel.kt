@@ -120,6 +120,14 @@ class NotesViewModel(
         _snackbarMessage.value = Event(R.string.snackbar_delete_all_text)
     }
 
+    fun bookmarkNote(noteId: Long, bookmark: Boolean) = viewModelScope.launch {
+        if (bookmark) {
+            notesRepository.bookmarkNote(noteId)
+        } else{
+            notesRepository.removeBookmark(noteId)
+        }
+    }
+
     private fun getFilterType() = savedStateHandle[NOTE_FILTER_TYPE_KEY] ?: NotesFilterType.ALL_NOTES
 
     companion object{

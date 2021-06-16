@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -8,34 +8,52 @@
         <variable
             name="viewmodel"
             type="com.note.notes.notes.NotesViewModel" />
+        <import type="android.view.View" />
+        <import type="android.widget.CompoundButton" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="@{() -> viewmodel.openNote(note.noteId)}">
-
-        <TextView
-            android:id="@+id/note_title"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{note.noteTitle}"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:maxLines="1"
-            android:ellipsize="end"/>
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/note_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{note.noteTitle}"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:maxLines="1"
+                android:ellipsize="end"/>
 
-        <TextView
-            android:id="@+id/note_body"
-            android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/note_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{note.noteBody}"
+                android:layout_marginTop="8dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:maxLines="2"
+                android:ellipsize="end"/>
+        </LinearLayout>
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{note.noteBody}"
-            android:layout_marginTop="8dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:maxLines="2"
-            android:ellipsize="end"/>
-
+            android:id="@+id/bookmark"
+            android:checked="@{note.bookmarked}"
+            android:onClick="@{(view) -> viewmodel.bookmarkNote(note.noteId, ((CompoundButton)view).isChecked())}"
+            android:button="@drawable/checkbox_state"
+            android:layout_marginStart="8dp"
+            android:buttonTint="@color/orange"
+            android:buttonTintMode="src_in"/>
     </LinearLayout>
 </layout>
