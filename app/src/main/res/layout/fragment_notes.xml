@@ -69,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@{viewmodel.noNotesLabelString}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 tools:text="No notes were found" />
         </LinearLayout>
 
