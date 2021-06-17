@@ -2,6 +2,7 @@ package com.note.notes.ui.notes
 
 import android.os.Bundle
 import android.view.*
+import android.widget.PopupMenu
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -77,11 +78,35 @@ class NotesFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.delete_all){
-            showConfirmationDialog()
-            return true
+        when (item.itemId){
+            R.id.delete_all -> {
+                showConfirmationDialog()
+                return true
+            }
+            R.id.filter_notes -> {
+                displayPopUpMenu()
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun displayPopUpMenu() {
+        val view = requireActivity().findViewById<View>(R.id.filter_notes)
+        PopupMenu(requireContext(), view).run {
+            menuInflater.inflate(R.menu.filter_notes_menu, menu)
+            setOnMenuItemClickListener { item ->
+                notesViewModel.setFiltering(
+                    when(item.itemId){
+                        R.id.all_notes -> NotesFilterType.ALL_NOTES
+                        R.id.bookmarked -> NotesFilterType.BOOKMARKS
+                        else -> NotesFilterType.ALL_NOTES
+                    }
+                )
+                true
+            }
+            show()
+        }
     }
 
     private fun showConfirmationDialog() {

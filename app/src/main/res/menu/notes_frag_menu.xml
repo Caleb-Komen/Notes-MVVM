@@ -6,4 +6,9 @@
         android:id="@+id/delete_all"
         android:title="Delete All"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/filter_notes"
+        android:title="Filter notes"
+        android:icon="@drawable/ic_baseline_filter_list_24"
+        app:showAsAction="always" />
 </menu>
