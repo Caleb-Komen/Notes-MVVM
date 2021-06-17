@@ -1,7 +1,6 @@
-package com.note.notes.notes
+package com.note.notes.ui.notes
 
 import androidx.recyclerview.widget.RecyclerView
-import com.note.notes.R
 import com.note.notes.data.Note
 import com.note.notes.databinding.NoteItemBinding
 

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.note.notes.notesdetails.NotesDetailsViewModel" />
+            type="com.note.notes.ui.notesdetails.NotesDetailsViewModel" />
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp"
-        tools:context=".notesdetails.NotesDetailsFragment">
+        tools:context=".ui.notesdetails.NotesDetailsFragment">
 
         <TextView
             android:id="@+id/text_note_title"

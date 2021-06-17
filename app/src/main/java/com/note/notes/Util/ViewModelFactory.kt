@@ -5,10 +5,10 @@ import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
-import com.note.notes.addeditnotes.AddEditNotesViewModel
+import com.note.notes.ui.addeditnotes.AddEditNotesViewModel
 import com.note.notes.data.NotesRepository
-import com.note.notes.notes.NotesViewModel
-import com.note.notes.notesdetails.NotesDetailsViewModel
+import com.note.notes.ui.notes.NotesViewModel
+import com.note.notes.ui.notesdetails.NotesDetailsViewModel
 
 class ViewModelFactory(
     private val repository: NotesRepository,

@@ -7,7 +7,7 @@
             type="com.note.notes.data.Note" />
         <variable
             name="viewmodel"
-            type="com.note.notes.notes.NotesViewModel" />
+            type="com.note.notes.ui.notes.NotesViewModel" />
         <import type="android.view.View" />
         <import type="android.widget.CompoundButton" />
     </data>

@@ -1,4 +1,4 @@
-package com.note.notes.notes
+package com.note.notes.ui.notes
 
 import android.os.Bundle
 import android.view.*

@@ -1,4 +1,4 @@
-package com.note.notes.notes
+package com.note.notes.ui.notes
 
 import androidx.lifecycle.*
 import com.note.notes.Event

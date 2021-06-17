@@ -1,4 +1,4 @@
-package com.note.notes.notes
+package com.note.notes.ui.notes
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

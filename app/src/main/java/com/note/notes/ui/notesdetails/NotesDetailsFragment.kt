@@ -1,6 +1,5 @@
-package com.note.notes.notesdetails
+package com.note.notes.ui.notesdetails
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AlertDialog

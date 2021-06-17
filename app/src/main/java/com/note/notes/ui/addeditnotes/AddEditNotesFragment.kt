@@ -1,4 +1,4 @@
-package com.note.notes.addeditnotes
+package com.note.notes.ui.addeditnotes
 
 import android.os.Bundle
 import android.view.*
@@ -11,7 +11,6 @@ import com.note.notes.EventObserver
 import com.note.notes.R
 import com.note.notes.Util.getViewModelFactory
 import com.note.notes.Util.setupSnackbar
-import com.note.notes.data.Note
 import com.note.notes.databinding.FragmentAddEditNotesBinding
 
 class AddEditNotesFragment : Fragment() {

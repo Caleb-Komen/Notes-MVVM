@@ -1,4 +1,4 @@
-package com.note.notes.addeditnotes
+package com.note.notes.ui.addeditnotes
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
