@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.note.notes.R
+import com.note.notes.ui.NotesActivity
 import timber.log.Timber
 
 class SettingsFragment: PreferenceFragmentCompat(),
@@ -29,19 +30,13 @@ class SettingsFragment: PreferenceFragmentCompat(),
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         when(key){
             getString(R.string.switch_theme_key) -> {
-                val enable = sharedPreferences?.let {
+                val enabled = sharedPreferences?.let {
                     sharedPreferences.getBoolean(key, false)
                 }!!
-                enableDarkTheme(enable)
+                sharedPreferences.edit().putBoolean(getString(R.string.switch_theme_key), enabled).apply()
+                (requireActivity() as NotesActivity).enableDarkTheme(enabled)
             }
         }
-    }
-
-    private fun enableDarkTheme(enable: Boolean) {
-        if (enable)
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        else
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 
 }
