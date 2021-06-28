@@ -44,7 +44,8 @@ class NotesDetailsFragment : Fragment() {
 
     private fun setupNavigation() {
         notesDetailsViewModel.editNoteEvent.observe(viewLifecycleOwner, EventObserver{ noteId ->
-            val action = NotesDetailsFragmentDirections.actionNotesDetailsFragmentToAddEditNotesFragment(noteId)
+            val action =
+                NotesDetailsFragmentDirections.actionNotesDetailsFragmentToAddEditNotesFragment(noteId, getString(R.string.edit_note))
             findNavController().navigate(action)
         })
 

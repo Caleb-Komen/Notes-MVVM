@@ -67,7 +67,7 @@ class NotesFragment : Fragment() {
         view?.findViewById<FloatingActionButton>(R.id.fab_new_note)?.apply {
             setOnClickListener {
                 val action = NotesFragmentDirections
-                    .actionNotesFragmentToAddEditNotesFragment(-1L)
+                    .actionNotesFragmentToAddEditNotesFragment(-1L, getString(R.string.add_note))
                 it.findNavController().navigate(action)
             }
         }
@@ -85,6 +85,10 @@ class NotesFragment : Fragment() {
             }
             R.id.filter_notes -> {
                 displayPopUpMenu()
+                return true
+            }
+            R.id.settings -> {
+                findNavController().navigate(R.id.action_notesFragment_to_settingsFragment)
                 return true
             }
         }

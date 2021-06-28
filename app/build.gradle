@@ -58,4 +58,5 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     implementation "com.jakewharton.timber:timber:$timber_version"
+    implementation "androidx.preference:preference-ktx:$preference_version"
 }

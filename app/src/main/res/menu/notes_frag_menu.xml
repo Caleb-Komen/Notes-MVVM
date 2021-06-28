@@ -11,4 +11,8 @@
         android:title="Filter notes"
         android:icon="@drawable/ic_baseline_filter_list_24"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/settings"
+        android:title="Settings"
+        app:showAsAction="never"/>
 </menu>
