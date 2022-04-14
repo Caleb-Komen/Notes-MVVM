@@ -1,6 +1,6 @@
 # Notes-MVVM
 An android app built with MVVM and Repository pattern
-# Teck stack used
+# Tech stack used
 * Jetpack
   * ViewModel
   * LiveData
